@@ -1,65 +1,33 @@
 //1. Import area
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
+import { REMOVE_MOVIE } from './reducer/actions/actions';
+import { reducerFunction } from './reducer/reducrFunctions/rootReducer';
+import { useContext } from "react";
+import { MovieContext } from '../App';
+
 
 //2. Defination
-
-//1. InitialState
-let initialState = {
-    movies:[
-            {
-              name:'Alone2',
-              image:'http://pixner.net/boleto/demo/assets/images/movie/movie01.jpg'
-            },
-            {
-              name:'Mars2',
-              image:"http://pixner.net/boleto/demo/assets/images/movie/movie02.jpg"
-            },
-            {
-              name:'Venus2',
-              image:"http://pixner.net/boleto/demo/assets/images/movie/movie03.jpg"
-            }
-          ],
-    cart:[]
-}
   
 //console.log("OldState----->",initialState)
 
-let reducerFunction = (oldState = initialState,action)=>{
-    //console.log("oldState----->",oldState);
-    let newState = oldState;
-    switch(action.type){
-        case "REMOVE_MOVIE":
 
-            return {
-                ...oldState,
-                movies:[
-                    ...oldState.movies.filter((cv,idx,arr)=>{
-                        return cv.name !== action.mname
-                    })
-
-                ]
-            }
-            //console.log('Hye');
-            break;
-        case "ADD_MOVIE":
-            //console.log('Hello');
-            return newState;
-            break;
-        default:
-            return newState;
-    }   
-}
+//reducerFunction();
 
 //console.log("NewState----->",initialState)
 
 export default function Home() {
+    const movies = useContext(MovieContext);
     //2.1 Hooks area
-    const [ newState ,dispatch] = useReducer( reducerFunction ,initialState)
+    const [ newState ,dispatch] = useReducer( reducerFunction ,movies)
 
-    //2.2 Function defination Area
+    //2.2 Function defination
+    useEffect(()=>{
+        //console.log('movies321----->',movies);
+        console.log("newState---->new state",newState)
+    },[]);//After page reload
     
 
-    //2.3 Return Statement
+    //2.3 return statement
     return (
         <>
         
@@ -348,12 +316,13 @@ export default function Home() {
                     <div className="article-section padding-bottom">
                         <div className="section-header-1">
                         <h2 className="title">movies</h2>
-                        <a className="view-all" href="movie-grid.html">View All</a>
+                        <a className="view-all" href="movie-grid">View All</a>
                         </div>
                         <div className="row mb-30-none justify-content-center">
                             {
-                                newState.movies && 
-                                    newState.movies.map((cv,idx,arr)=>{
+                                movies.movies && 
+                                movies.movies.map((cv,idx,arr)=>{
+                                        console.log(cv);
                                         return (
                                                 <div key={idx} className="col-sm-6 col-lg-4">
                                                     <div className="movie-grid">
@@ -379,7 +348,7 @@ export default function Home() {
                                                                 </div>
                                                                 <span className="content">88%</span>
                                                                 <br />
-                                                                <button className="btn btn-danger btn-sm" onClick={(e)=>{ dispatch({type:"REMOVE_MOVIE",mname:cv.name}) }}>D</button>
+                                                                <button className="btn btn-danger btn-sm" onClick={(e)=>{ dispatch({type:REMOVE_MOVIE,mname:cv.name}) }}>D</button>
                                                             </li>
                                                         </ul>
                                                     </div>
