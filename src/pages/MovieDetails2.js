@@ -10,11 +10,6 @@ class MovieDetails2 extends Component {
     
 
     //2. Constructor
-    constructor(){
-        super();
-        //Constructor is also a especial method whose job is to initialize the properties
-    }
-
     //3. Method Area
   render() {
     return (

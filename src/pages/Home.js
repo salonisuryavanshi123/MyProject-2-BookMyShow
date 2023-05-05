@@ -1,9 +1,5 @@
 //1. Import area
-import React, { useEffect, useReducer } from 'react'
-import { REMOVE_MOVIE } from './reducer/actions/actions';
-import { reducerFunction } from './reducer/reducrFunctions/rootReducer';
-import { useContext } from "react";
-import { MovieContext } from '../App';
+import React, { useEffect, useState } from 'react'
 
 
 //2. Defination
@@ -16,14 +12,14 @@ import { MovieContext } from '../App';
 //console.log("NewState----->",initialState)
 
 export default function Home() {
-    const movies = useContext(MovieContext);
+    //const movies = useContext(MovieContext);
+    const [movies,setMovies] = useState([]);
     //2.1 Hooks area
-    const [ newState ,dispatch] = useReducer( reducerFunction ,movies)
+    //const [ newState ,dispatch] = useReducer( reducerFunction ,movies)
 
     //2.2 Function defination
     useEffect(()=>{
         //console.log('movies321----->',movies);
-        console.log("newState---->new state",newState)
     },[]);//After page reload
     
 
@@ -31,7 +27,6 @@ export default function Home() {
     return (
         <>
         
-            { console.log('newState----->',newState.movies) }
 
             <section className="banner-section">
                 <div className="banner-bg bg_img bg-fixed" data-background="assets/images/banner/banner01.jpg" />
@@ -320,8 +315,8 @@ export default function Home() {
                         </div>
                         <div className="row mb-30-none justify-content-center">
                             {
-                                movies.movies && 
-                                movies.movies.map((cv,idx,arr)=>{
+                                movies && 
+                                movies.map((cv,idx,arr)=>{
                                         console.log(cv);
                                         return (
                                                 <div key={idx} className="col-sm-6 col-lg-4">
@@ -348,7 +343,6 @@ export default function Home() {
                                                                 </div>
                                                                 <span className="content">88%</span>
                                                                 <br />
-                                                                <button className="btn btn-danger btn-sm" onClick={(e)=>{ dispatch({type:REMOVE_MOVIE,mname:cv.name}) }}>D</button>
                                                             </li>
                                                         </ul>
                                                     </div>

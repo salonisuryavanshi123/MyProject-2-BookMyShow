@@ -1,6 +1,7 @@
 //1. Import Area
 import React from 'react'
 import Navigation from './Navigation'
+import { Link } from 'react-router-dom'
 
 //2. Defination Area
 export default function Header() {
@@ -10,9 +11,9 @@ export default function Header() {
                 <div className="container">
                     <div className="header-wrapper">
                         <div className="logo">
-                            <a href="/">
+                            <Link to="/">
                                 <img src="assets/images/logo/logo.png" alt="logo" />
-                            </a>
+                            </Link>
                         </div>
                         <Navigation />
 

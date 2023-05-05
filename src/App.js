@@ -3,7 +3,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 
-import Home from './pages/Home';
+//import Home from './pages/Home';
 import Layout from './pages/Layout';
 import NoPage from './pages/NoPage';
 import SignIn from './pages/SignIn';
@@ -99,7 +99,7 @@ function App() {
 
   //2.3 Return Statement
     return (
-          <MovieContext.Provider value={initialState}>
+          //<MovieContext.Provider value={initialState}>
               <BrowserRouter>
                 <Routes>
                   <Route path="/" element={<Layout />}>
@@ -114,7 +114,7 @@ function App() {
                   <Route path="*" element={<NoPage />}></Route>
                 </Routes>
               </BrowserRouter>
-          </MovieContext.Provider> 
+          //</MovieContext.Provider> 
     );
   }
 
