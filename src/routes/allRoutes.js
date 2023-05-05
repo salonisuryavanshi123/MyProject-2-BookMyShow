@@ -6,6 +6,7 @@ import MovieSeatPlan from '../pages/MovieSeatPlan';
 import MovieCheckout from '../pages/MovieCheckout';
 import Popcorn from '../pages/Popcorn';
 import MovieList from '../pages/MovieList';
+import MovieDetails2 from '../pages/MovieDetails2';
 
 
 
@@ -21,6 +22,10 @@ const allPublicRoutes = [
     {
         path:"/movie-details",
         element:<MovieDetails />
+    },
+    {
+        path:"/movie-details-2",
+        element:<MovieDetails2 />
     },
     {
         path:"/movie-ticket-plan",
